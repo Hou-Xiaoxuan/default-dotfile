@@ -1,0 +1,15 @@
+[user]
+	name = HouXiaoxuan
+	email = Hou_Xiaoxuan@163.com
+[core]
+	editor = vim
+	quotepath = false
+[url "ssh://git@github.com/"]
+        insteadOf = https://github.com/
+[http]
+	proxyAuthMethod = basic
+[safe]
+	directory = /run/media/linxuan/Storage/CodeSpace/_Project/VHDLChecker/vhdl_DG
+	directory = /run/media/linxuan/Storage/CodeSpace/CODE/Algorithm
+	directory = /run/media/linxuan/Storage/CodeSpace/Python Code/Python Code
+	directory = /run/media/linxuan/Storage/CodeSpace/.MD
