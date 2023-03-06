@@ -16,7 +16,7 @@ alias ori-ls='/usr/bin/ls'
 
 # config git
 alias lxcfg='/usr/bin/git --git-dir=/home/script/cfg/default-dotfile --work-tree=/home/linxuan'
-alias alncfg='/usr/bin/git --git-dir=/home/script/cfg/hyprland-dotfile --work-tree=/home/alina'
+alias alncfg='/usr/bin/git --git-dir=/home/script/cfg/wayland-dotfile --work-tree=/home/alina'
 # 环境变量
 fish_add_path -ga ~/bin
 
