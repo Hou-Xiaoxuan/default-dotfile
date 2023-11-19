@@ -147,3 +147,9 @@ export PATH=$PATH:$HOME/bin
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export SUDO_EDITOR=/usr/bin/vim
+
+# 在父进程不是fish的情况下切换到fish
+if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]
+then
+    exec fish
+fi
