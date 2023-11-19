@@ -1,0 +1,820 @@
+{
+    "rules": [
+        // 基础规则 caplock->esc
+        {
+            "description": "CapsLock to Hyper",
+            "manipulators": [
+                {
+                    // "conditions": [
+                    //     {
+                    //         "bundle_identifiers": [
+                    //             "^com\\.teamviewer\\.TeamViewer$",
+                    //             "^com\\.vmware\\.horizon$",
+                    //             "^com\\.vmware\\.fusion$",
+                    //             "^com\\.vmware\\.view$",
+                    //             "^com\\.parallels\\.desktop$",
+                    //             "^com\\.parallels\\.vm$",
+                    //             "^com\\.parallels\\.desktop\\.console$",
+                    //             "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                    //             "^com\\.citrix\\.XenAppViewer$",
+                    //             "^com\\.vmware\\.proxyApp\\.",
+                    //             "^com\\.parallels\\.winapp\\.",
+                    //             "^com\\.oray\\.sunlogin\\.macclient$",
+                    //             "^com\\.microsoft\\.rdc\\.osx\\.beta"
+                    //         ],
+                    //         "type": "frontmost_application_unless"
+                    //     }
+                    // ],
+                    "description": "capslock = esc(click) | hyper(hold)",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "caps_lock",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_shift",
+                            "modifiers": [
+                                "right_command",
+                                "right_control"
+                            ]
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "escape"
+                        }
+                    ]
+                },
+                {
+                    "description": "escape = capslock switch",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "escape",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock"
+                            ],
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "caps_lock",
+                            "modifiers": [
+                                "left_control"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        // 移动光标
+        {
+            "description": "navigate-simpily",
+            "manipulators": [
+                // hyper+hjkl
+                {
+                    "description": " h = left",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "h",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_arrow"
+                        }
+                    ]
+                },
+                {
+                    "description": " j = down",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "j",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "down_arrow"
+                        }
+                    ]
+                },
+                {
+                    "description": " k = up",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "k",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "up_arrow"
+                        }
+                    ]
+                },
+                {
+                    "description": " l = right",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "l",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_arrow"
+                        }
+                    ]
+                },
+                {
+                    "description": " u = page_up",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "u",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "page_up"
+                        }
+                    ]
+                },
+                {
+                    "description": " i = home",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "i",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "home"
+                        }
+                    ]
+                },
+                {
+                    "description": " o = end",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "o",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "end"
+                        }
+                    ]
+                },
+                {
+                    "description": " p = page_down",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "p",
+                        "modifiers": {
+                            "mandatory": [
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "page_down"
+                        }
+                    ]
+                },
+                // hyper + command 选词，映射到
+                {
+                    "description": "command + h = shift + left",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "h",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_arrow",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "command + j = shift + down",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "j",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "down_arrow",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "command + k = shift + up",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "k",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "up_arrow",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "command + l = shift + right",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "l",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_arrow",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "command + u = shift + page_up",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "u",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "page_up",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "command + i = shift + home",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "i",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "home",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "command + o = shift + end",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "o",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "end",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "command + p = shift + page_down",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "p",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "page_down",
+                            "modifiers": [
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                // hyper + hl:桌面 jk:聚焦窗口 暴露所有
+                // {
+                //     "description": "option + h = ctrl + left (prev desktop)",
+                //     "type": "basic",
+                //     "from": {
+                //         "key_code": "h",
+                //         "modifiers": {
+                //             "mandatory": [
+                //                 "left_option",
+                //                 "right_command",
+                //                 "right_control",
+                //                 "right_shift"
+                //             ]
+                //         }
+                //     },
+                //     "to": [
+                //         {
+                //             "key_code": "left_arrow",
+                //             "modifiers": [
+                //                 "left_control"
+                //             ]
+                //         }
+                //     ]
+                // },
+                // {
+                //     "description": "option + j = ctrl + down (focus application)",
+                //     "type": "basic",
+                //     "from": {
+                //         "key_code": "j",
+                //         "modifiers": {
+                //             "mandatory": [
+                //                 "left_option",
+                //                 "right_command",
+                //                 "right_control",
+                //                 "right_shift"
+                //             ]
+                //         }
+                //     },
+                //     "to": [
+                //         {
+                //             "key_code": "down_arrow",
+                //             "modifiers": [
+                //                 "left_control"
+                //             ]
+                //         }
+                //     ]
+                // },
+                // {
+                //     "description": "option + k = ctrl + up (expose all)",
+                //     "type": "basic",
+                //     "from": {
+                //         "key_code": "k",
+                //         "modifiers": {
+                //             "mandatory": [
+                //                 "left_option",
+                //                 "right_command",
+                //                 "right_control",
+                //                 "right_shift"
+                //             ]
+                //         }
+                //     },
+                //     "to": [
+                //         {
+                //             "key_code": "up_arrow",
+                //             "modifiers": [
+                //                 "left_control"
+                //             ]
+                //         }
+                //     ]
+                // },
+                // {
+                //     "description": "option + l = ctrl + right (next desktop)",
+                //     "type": "basic",
+                //     "from": {
+                //         "key_code": "l",
+                //         "modifiers": {
+                //             "mandatory": [
+                //                 "left_option",
+                //                 "right_command",
+                //                 "right_control",
+                //                 "right_shift"
+                //             ]
+                //         }
+                //     },
+                //     "to": [
+                //         {
+                //             "key_code": "right_arrow",
+                //             "modifiers": [
+                //                 "left_control"
+                //             ]
+                //         }
+                //     ]
+                // },
+                // hyper + shift: jk:应用 hl:桌面
+                {
+                    "description": "shift + j = command + tab (next application)",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "j",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_shift",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "tab",
+                            "modifiers": [
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "shift + k = command + tab (prev application)",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "k",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_shift",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "tab",
+                            "modifiers": [
+                                "left_command",
+                                "left_shift"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "shift + h = ctrl + left (prev desktop)",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "h",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_shift",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_arrow",
+                            "modifiers": [
+                                "left_control"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "description": "shift + l = ctrl + right (next desktop)",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "l",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_shift",
+                                "right_command",
+                                "right_control",
+                                "right_shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_arrow",
+                            "modifiers": [
+                                "left_control"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        // shift切换输入法
+        {
+            "description": "Use shift to switch input sources",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "bundle_identifiers": [
+                                "^com\\.teamviewer\\.TeamViewer$",
+                                "^com\\.vmware\\.horizon$",
+                                "^com\\.vmware\\.fusion$",
+                                "^com\\.vmware\\.view$",
+                                "^com\\.parallels\\.desktop$",
+                                "^com\\.parallels\\.vm$",
+                                "^com\\.parallels\\.desktop\\.console$",
+                                "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                                "^com\\.citrix\\.XenAppViewer$",
+                                "^com\\.vmware\\.proxyApp\\.",
+                                "^com\\.parallels\\.winapp\\.",
+                                "^com\\.oray\\.sunlogin\\.macclient$",
+                                "^com\\.microsoft\\.rdc\\.osx\\.beta"
+                            ],
+                            "type": "frontmost_application_unless"
+                        }
+                    ],
+                    "from": {
+                        "key_code": "left_shift",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "basic.to_if_alone_timeout_milliseconds": 200,
+                        "basic.to_if_held_down_threshold_milliseconds": 200
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_shift",
+                            "lazy": true
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "spacebar",
+                            "modifiers": "control"
+                        }
+                    ],
+                    "to_if_held_down": [
+                        {
+                            "key_code": "left_shift"
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "bundle_identifiers": [
+                                "^com\\.teamviewer\\.TeamViewer$",
+                                "^com\\.vmware\\.horizon$",
+                                "^com\\.vmware\\.fusion$",
+                                "^com\\.vmware\\.view$",
+                                "^com\\.parallels\\.desktop$",
+                                "^com\\.parallels\\.vm$",
+                                "^com\\.parallels\\.desktop\\.console$",
+                                "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                                "^com\\.citrix\\.XenAppViewer$",
+                                "^com\\.vmware\\.proxyApp\\.",
+                                "^com\\.parallels\\.winapp\\.",
+                                "^com\\.oray\\.sunlogin\\.macclient$",
+                                "^com\\.microsoft\\.rdc\\.osx\\.beta"
+                            ],
+                            "type": "frontmost_application_unless"
+                        }
+                    ],
+                    "from": {
+                        "key_code": "right_shift",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "basic.to_if_alone_timeout_milliseconds": 200,
+                        "basic.to_if_held_down_threshold_milliseconds": 200
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_shift",
+                            "lazy": true
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "spacebar",
+                            "modifiers": "control"
+                        }
+                    ],
+                    "to_if_held_down": [
+                        {
+                            "key_code": "right_shift"
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        // k320交换左边alt win
+        {
+            "description": "k320交换左边alt win",
+            "manipulators": [
+                {
+                    "description": "left_alt = left_win",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "left_alt",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_command"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "device_if",
+                            "identifiers": [
+                                {
+                                    "vendor_id": 6785,
+                                    "product_id": 4871
+                                }
+                            ]
+                        },
+                        {
+                            "bundle_identifiers": [
+                                "^com\\.teamviewer\\.TeamViewer$",
+                                "^com\\.vmware\\.horizon$",
+                                "^com\\.vmware\\.fusion$",
+                                "^com\\.vmware\\.view$",
+                                "^com\\.parallels\\.desktop$",
+                                "^com\\.parallels\\.vm$",
+                                "^com\\.parallels\\.desktop\\.console$",
+                                "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                                "^com\\.citrix\\.XenAppViewer$",
+                                "^com\\.vmware\\.proxyApp\\.",
+                                "^com\\.parallels\\.winapp\\.",
+                                "^com\\.oray\\.sunlogin\\.macclient$",
+                                "^com\\.microsoft\\.rdc\\.osx\\.beta"
+                            ],
+                            "type": "frontmost_application_unless"
+                        }
+                    ]
+                },
+                {
+                    "description": "left_win = left_alt",
+                    "type": "basic",
+                    "from": {
+                        "key_code": "left_command",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "left_alt"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "type": "device_if",
+                            "identifiers": [
+                                {
+                                    "vendor_id": 6785,
+                                    "product_id": 4871
+                                }
+                            ]
+                        },
+                        {
+                            "bundle_identifiers": [
+                                "^com\\.teamviewer\\.TeamViewer$",
+                                "^com\\.vmware\\.horizon$",
+                                "^com\\.vmware\\.fusion$",
+                                "^com\\.vmware\\.view$",
+                                "^com\\.parallels\\.desktop$",
+                                "^com\\.parallels\\.vm$",
+                                "^com\\.parallels\\.desktop\\.console$",
+                                "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                                "^com\\.citrix\\.XenAppViewer$",
+                                "^com\\.vmware\\.proxyApp\\.",
+                                "^com\\.parallels\\.winapp\\.",
+                                "^com\\.oray\\.sunlogin\\.macclient$",
+                                "^com\\.microsoft\\.rdc\\.osx\\.beta"
+                            ],
+                            "type": "frontmost_application_unless"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
